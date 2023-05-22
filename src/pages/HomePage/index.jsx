@@ -48,12 +48,6 @@ export default function Home() {
       .catch(err => err.response.data.message);
   };
 
-  const handleGoToLink = (shortUrl) => {
-    console.log(location);
-    window.open(location.href + `go/${shortUrl}`);
-    // navigate(`go/${shortUrl}`);
-  };
-
   return (
     <Container>
       <ShortLink>
