@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     font-size: 14px;
   }
+  a{
+    white-space: nowrap;
+  }
 `;
 
 export default GlobalStyle;

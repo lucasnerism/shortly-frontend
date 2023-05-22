@@ -4,12 +4,14 @@ import { FaExternalLinkSquareAlt, FaTrashAlt } from "react-icons/fa";
 import colors from "../../constants/colors.js";
 import api from "../../services/api.js";
 import { UserContext } from "../../contexts/userContext.jsx";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Home() {
   const [links, setLinks] = useState([]);
   const [link, setLink] = useState("");
   const { user } = useContext(UserContext);
   const BASE_URL = import.meta.env.VITE_BASE_URL;
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -33,7 +35,7 @@ export default function Home() {
       const data = await api.getUser(user.token);
       setLinks(data.data.shortenedUrls);
     } catch (error) {
-      alert(error.response.data.message);
+      alert(error);
     }
   };
 
@@ -47,7 +49,9 @@ export default function Home() {
   };
 
   const handleGoToLink = (shortUrl) => {
-    window.open(`${BASE_URL}/urls/open/${shortUrl}`);
+    console.log(location);
+    window.open(location.href + `go/${shortUrl}`);
+    // navigate(`go/${shortUrl}`);
   };
 
   return (
@@ -60,7 +64,7 @@ export default function Home() {
         {links?.map(el => <ListItem key={el.id}>
           <div>
             <p>{el.url}</p>
-            <p onClick={() => handleGoToLink(el.shortUrl)}>{el.shortUrl}</p>
+            <Link to={`/go/${el.shortUrl}`}><p>{el.shortUrl}</p></Link>
             <p>{`Quantidade de visitantes:${el.visitCount}`}</p>
           </div>
           <div className="delete" onClick={() => handleDelete(el.id)}><FaTrashAlt color={colors.red} size="26px" /></div>

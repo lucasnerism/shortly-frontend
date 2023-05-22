@@ -7,6 +7,7 @@ import Home from './pages/HomePage/index.jsx';
 import Ranking from './pages/RankingPage/RankingPage.jsx';
 import SignUp from './pages/SignUpPage/index.jsx';
 import SignIn from './pages/SignInPage/index.jsx';
+import Redirect from './pages/RedirectPage/index.jsx';
 
 export default function App() {
   const { user } = useContext(UserContext);
@@ -17,7 +18,7 @@ export default function App() {
         <Header />
         <Routes>
           <Route path="/" element={user ? <Home /> : <Ranking />} />
-          <Route path="/go" element={<Home />} />
+          <Route path="/go/:shortUrl" element={<Redirect />} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/sign-in" element={<SignIn />} />
