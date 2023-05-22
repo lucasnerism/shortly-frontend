@@ -64,7 +64,7 @@ export default function Home() {
         {links?.map(el => <ListItem key={el.id}>
           <div>
             <p>{el.url}</p>
-            <Link to={`/go/${el.shortUrl}`}><p>{el.shortUrl}</p></Link>
+            <Link to={`/go/${el.shortUrl}`} target="_blank" rel="noopener noreferrer"><p>{el.shortUrl}</p></Link>
             <p>{`Quantidade de visitantes:${el.visitCount}`}</p>
           </div>
           <div className="delete" onClick={() => handleDelete(el.id)}><FaTrashAlt color={colors.red} size="26px" /></div>
